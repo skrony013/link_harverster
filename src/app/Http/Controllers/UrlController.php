@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUrlsRequest;
+
 
 class UrlController extends Controller
 {
@@ -25,9 +27,13 @@ class UrlController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUrlsRequest $request)
     {
-        //
+        // $validated = $request->validated();
+        $urls = explode(PHP_EOL, $request->input('urls'));
+        ProcessUrls::dispatch($urls);
+
+        return redirect()->back()->with('status', 'URLs are being processed!');;
     }
 
     /**

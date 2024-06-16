@@ -47,9 +47,10 @@
 				<div class="offset-1 col-md-7 p-4" style="box-shadow: 0 0 13px 0 rgba(82, 63, 105, .05); border-radius:20px;">
 					<div x-data="{ urls: '' }">
 						<h3>Submit URLs</h3>
-						<form method="POST" action="">
+						<form method="POST" action="{{ route('submit.urls') }}">
 							@csrf
 							<textarea placeholder="Enter URLs, each on a new line..." class="form-control" x-model="urls" name="urls" rows="10" cols="100"></textarea>
+							<div class="mt-2 text-danger">@error('urls') {{ $message }} @enderror</div>
 							<button style="width:100%;" class="btn btn-danger mt-2" type="submit">Submit</button>
 						</form>
 					</div>
