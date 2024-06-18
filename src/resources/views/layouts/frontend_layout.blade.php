@@ -8,6 +8,16 @@
 	<link rel="shortcut icon" type="image/x-icon" href="https://ronyahmed.xyz/upload/service/url_harvester.png">
 	<!-- Bootstrap css cdn here -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Bootstrap Icons -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+	<style>
+		.shadow-sm{
+			display: none;
+		}
+		.leading-5{
+			margin-top: 7px;
+		}
+	</style>
 </head>
 <body>
 	<!-- Header section Start from here -->
@@ -26,7 +36,7 @@
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
 							<ul class="navbar-nav ms-auto">
 								<li class="nav-item">
-									<a class="btn btn-danger" href="{{ route('show') }}">View Url list</a>
+									<a class="btn btn-success" href="{{ route('show') }}">View Url list</a>
 								</li>  
 							</ul>
 						</div>

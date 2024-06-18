@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUrlsRequest;
 use App\Jobs\ProcessUrls;
+use App\Models\URL;
 
 
 class UrlController extends Controller
@@ -39,15 +40,14 @@ class UrlController extends Controller
      */
     public function show(Request $request)
     {
-        // $urls = URL::with('domain')
-        // ->when($request->search, function ($query, $search) {
-        //     return $query->where('url', 'like', "%$search%");
-        // })
-        // ->orderBy($request->sort_by ?? 'created_at', $request->sort_order ?? 'desc')
-        // ->paginate(10);
+        $urls = URL::with('domain')
+        ->when($request->search, function ($query, $search) {
+            return $query->where('url', 'like', "%$search%");
+        })
+        ->orderBy($request->sort_by ?? 'created_at', $request->sort_order ?? 'desc')
+        ->paginate(7);
 
-        // return view('urls.index', compact('urls'));
-        return view('frontend.show_urls');
+        return view('frontend.show_urls', compact('urls'));
     }
 
     /**
