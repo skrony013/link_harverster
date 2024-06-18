@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUrlsRequest;
+use App\Jobs\ProcessUrls;
 
 
 class UrlController extends Controller
@@ -13,7 +14,7 @@ class UrlController extends Controller
      */
     public function index()
     {
-        return view('frontend.index');
+        return view('frontend.add_urls');
     }
 
     /**
@@ -29,19 +30,24 @@ class UrlController extends Controller
      */
     public function store(StoreUrlsRequest $request)
     {
-        // $validated = $request->validated();
-        $urls = explode(PHP_EOL, $request->input('urls'));
-        ProcessUrls::dispatch($urls);
-
+        ProcessUrls::dispatch($request->urls);
         return redirect()->back()->with('status', 'URLs are being processed!');;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
+        // $urls = URL::with('domain')
+        // ->when($request->search, function ($query, $search) {
+        //     return $query->where('url', 'like', "%$search%");
+        // })
+        // ->orderBy($request->sort_by ?? 'created_at', $request->sort_order ?? 'desc')
+        // ->paginate(10);
+
+        // return view('urls.index', compact('urls'));
+        return view('frontend.show_urls');
     }
 
     /**

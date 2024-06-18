@@ -15,4 +15,5 @@ Route::get('/clear', function() {
 // Frontend Routes  Start Here
 
 Route::get('/', [UrlController::class, 'index'])->name('index');
+Route::get('/urls', [UrlController::class, 'show'])->name('show');
 Route::post('/submit-urls', [UrlController::class, 'store'])->name('submit.urls');
