@@ -45,7 +45,7 @@ class UrlController extends Controller
             return $query->where('url', 'like', "%$search%");
         })
         ->orderBy($request->sort_by ?? 'created_at', $request->sort_order ?? 'desc')
-        ->paginate(7);
+        ->paginate(5);
 
         return view('frontend.show_urls', compact('urls'));
     }
